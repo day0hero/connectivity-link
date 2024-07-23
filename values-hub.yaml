@@ -67,6 +67,11 @@ clusterGroup:
       namespace: istio-system
       project: rh-connectivity-link
       path: charts/all/istio-sail
+    kuadrant:
+      name: kuadrant
+      namespace: kuadrant-system
+      project: rh-connectivity-link
+      path: charts/all/kuadrant
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
