@@ -8,6 +8,7 @@ clusterGroup:
     - istio-system
     - ingress-gateway
     - kuadrant-system
+        operatorGroup: false
   subscriptions:
     acm:
       name: advanced-cluster-management
