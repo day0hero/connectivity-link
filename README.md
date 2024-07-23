@@ -4,14 +4,13 @@
 
 ## Start Here
 
-If you've followed a link to this repository, but are not really sure what it contains
-or how to use it, head over to [Multicloud GitOps](https://validatedpatterns.io/patterns/multicloud-gitops/)
-for additional context and installation instructions
+This pattern has completed all steps (sans Step4 - Optional: Configure observability and metrics) in the [kuadrant installation guide](https://docs.kuadrant.io/0.8.0/kuadrant-operator/doc/install/install-openshift/). 
+
+The next steps are to follow the documentation to [secure, protect, and connect APIs with Kuadrant on OpenShift](https://docs.kuadrant.io/0.8.0/kuadrant-operator/doc/user-guides/secure-protect-connect-single-multi-cluster/)
 
 ## Rationale
 
 The goal for this pattern is to:
 
-* Use a GitOps approach to manage hybrid and multi-cloud deployments across both public and private clouds.
-* Enable cross-cluster governance and application lifecycle management.
+* Use a GitOps approach to deploy Red Hat Connectivity Link (kuadrant)
 * Securely manage secrets across the deployment.
