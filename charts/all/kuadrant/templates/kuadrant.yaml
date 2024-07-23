@@ -4,7 +4,7 @@ metadata:
   name: kuadrant
   namespace: kuadrant-system
   annotations:
-    argocd.argoproj.io/hook: "PostSync"
+    argocd.argoproj.io/sync-wave: "50"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true,Validate=false
 {{- if .Values.redis.multicluster }}
 spec:
