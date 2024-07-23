@@ -3,9 +3,15 @@ kind: Kuadrant
 metadata:
   name: kuadrant
   namespace: kuadrant-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+{{- if .Values.redis.multicluster }}
 spec:
   limitador:
     storage:
       redis-cached:
         configSecretRef:
           name: redis-config 
+{{- else }}
+spec: {}
+{{- end }}
