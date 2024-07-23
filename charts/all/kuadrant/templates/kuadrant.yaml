@@ -5,7 +5,7 @@ metadata:
   namespace: kuadrant-system
   annotations:
     argocd.argoproj.io/hook: "PostSync"
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true,Validate=false
 {{- if .Values.redis.multicluster }}
 spec:
   limitador:
