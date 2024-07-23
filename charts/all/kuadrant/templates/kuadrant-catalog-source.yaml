@@ -4,7 +4,7 @@ metadata:
   name: kuadrant-operator-catalog
   namespace: kuadrant-system
   annotations:
-    argocd.argoproj.io/sync-wave: "-5"
+    argocd.argoproj.io/hook: "PreSync"
 spec:
   sourceType: grpc
   image: quay.io/kuadrant/kuadrant-operator-catalog:v0.8.0
