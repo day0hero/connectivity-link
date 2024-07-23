@@ -12,7 +12,7 @@ spec:
     storage:
       redis-cached:
         configSecretRef:
-          name: redis-config 
+          name: {{ .Values.redis.secretName }}
 {{- else }}
 spec: {}
 {{- end }}

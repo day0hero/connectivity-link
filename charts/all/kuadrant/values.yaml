@@ -7,10 +7,6 @@ kuadrant:
   namespace: kuadrant-system
 
 # External Secrets Configuration
-secretStore:
-  name: vault-backend
-  kind: ClusterSecretStore
-
 # Vault secretStore definition
 secretStore:
   name: vault-backend
@@ -22,4 +18,6 @@ awsCredentials:
 
 redis:
 # Override support for multicluster
+  enabled: false
   multicluster: false
+  secretName: redis-config
