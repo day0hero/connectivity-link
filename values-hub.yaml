@@ -5,14 +5,22 @@ clusterGroup:
     - open-cluster-management
     - vault
     - golang-external-secrets
+    - istio-system
+    - ingress-gateway
+    - kuadrant-system
   subscriptions:
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
       channel: release-2.10
       #csv: advanced-cluster-management.v2.6.1
+    sail:
+      name: sailoperator
+      namespace: istio-system
+      source: community-operators
   projects:
     - hub
+    - rh-connectivity-link
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -54,6 +62,11 @@ clusterGroup:
       namespace: golang-external-secrets
       project: hub
       path: common/golang-external-secrets
+    istio-sail:
+      name: sail
+      namespace: istio-system
+      project: rh-connectivity-link
+      path: charts/all/istio-sail
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule

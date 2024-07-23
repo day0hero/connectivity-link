@@ -3,5 +3,7 @@ apiVersion: operators.coreos.com/v1
 metadata:
   name: kuadrant
   namespace: kuadrant-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec: 
   upgradeStrategy: Default
