@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "15"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true,Validate=false,PruneLast=true
-{{- if .Values.redis.multicluster }}
+{{- if .Values.redis.enabled }}
 spec:
   limitador:
     storage:

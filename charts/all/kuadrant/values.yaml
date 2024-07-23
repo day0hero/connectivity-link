@@ -17,7 +17,8 @@ awsCredentials:
   key: secret/data/hub/awsCredentials
 
 redis:
-# Override support for multicluster
+# Override to enable support for multicluster
   enabled: false
-  multicluster: false
+# External Secret Configuration
   secretName: redis-config
+  key: secret/data/hub/redis
