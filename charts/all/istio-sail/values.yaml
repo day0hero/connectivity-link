@@ -18,4 +18,4 @@ secretStore:
 
 # Key and Path of secret provisioned in Vault
 awsCredentials:
-  key: secret/data/hub/awsCreds
+  key: secret/data/hub/awsCredentials
