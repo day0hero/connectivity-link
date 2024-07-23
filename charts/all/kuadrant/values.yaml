@@ -2,6 +2,24 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# Kuadrant Configuration
+kuadrant:
+  namespace: kuadrant-system
+
+# External Secrets Configuration
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+
+# Vault secretStore definition
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+
+# Key and Path of secret provisioned in Vault
+awsCredentials:
+  key: secret/data/hub/awsCreds
+
 redis:
 # Override support for multicluster
   multicluster: false
