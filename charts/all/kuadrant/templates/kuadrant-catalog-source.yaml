@@ -5,6 +5,7 @@ metadata:
   namespace: kuadrant-system
   annotations:
     argocd.argoproj.io/hook: "PreSync"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   sourceType: grpc
   image: quay.io/kuadrant/kuadrant-operator-catalog:v0.8.0
