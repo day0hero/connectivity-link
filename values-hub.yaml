@@ -7,7 +7,7 @@ clusterGroup:
     - golang-external-secrets
     - istio-system
     - ingress-gateway
-    - kuadrant-system
+    - kuadrant-system:
         operatorGroup: false
   subscriptions:
     acm:
