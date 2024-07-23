@@ -1,0 +1,35 @@
+---
+# Source: istio-sail/templates/externalsecret-aws-creds.yaml
+apiVersion: "external-secrets.io/v1beta1"
+kind: ExternalSecret
+metadata:
+  name: aws-credentials
+  namespace: ingress-gateway
+  annotations:
+    argocd.argoproj.io/sync-wave: '5'
+spec:
+  refreshInterval: 15s
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: aws-credentials
+    template:
+      mergePolicy: Merge
+      type: kuadrant.io/aws
+  dataFrom:
+  - extract:
+      key: secret/data/hub/awsCredentials
+---
+# Source: istio-sail/templates/istio-api-gateway-provider.yaml
+apiVersion: operator.istio.io/v1alpha1
+kind: Istio
+metadata:
+  name: default
+spec:
+  version: v1.21.0
+  namespace: istio-system
+  # Disable autoscaling to reduce dev resources
+  values:
+    pilot:
+      autoscaleEnabled: false

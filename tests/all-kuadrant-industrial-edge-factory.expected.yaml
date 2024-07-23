@@ -1,0 +1,77 @@
+---
+# Source: kuadrant/templates/kuadrant-catalog-source.yaml
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: kuadrant-operator-catalog
+  namespace: kuadrant-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  sourceType: grpc
+  image: quay.io/kuadrant/kuadrant-operator-catalog:v0.8.0
+  displayName: Kuadrant Operators
+  publisher: grpc
+  updateStrategy:
+    registryPoll:
+      interval: 45m
+---
+# Source: kuadrant/templates/externalsecret-aws-creds.yaml
+apiVersion: "external-secrets.io/v1beta1"
+kind: ExternalSecret
+metadata:
+  name: aws-credentials
+  namespace: kuadrant-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '5'
+spec:
+  refreshInterval: 15s
+  secretStoreRef:
+    name: vault-backend
+    kind: ClusterSecretStore
+  target:
+    name: aws-credentials
+    template:
+      mergePolicy: Merge
+      type: kuadrant.io/aws
+  dataFrom:
+  - extract:
+      key: secret/data/hub/awsCredentials
+---
+# Source: kuadrant/templates/kuadrant.yaml
+apiVersion: kuadrant.io/v1beta1
+kind: Kuadrant
+metadata:
+  name: kuadrant
+  namespace: kuadrant-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true,Validate=false,PruneLast=true
+spec: {}
+---
+# Source: kuadrant/templates/kuadrant-operatorgroup.yaml
+kind: OperatorGroup
+apiVersion: operators.coreos.com/v1
+metadata:
+  name: kuadrant
+  namespace: kuadrant-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec: 
+  upgradeStrategy: Default
+---
+# Source: kuadrant/templates/kuadrant-subscription.yaml
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: kuadrant-operator
+  namespace: kuadrant-system
+  annotations:
+    argodcd.argoproj.io/sync-wave: "1"
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: kuadrant-operator
+  source: kuadrant-operator-catalog
+  sourceNamespace: kuadrant-system
