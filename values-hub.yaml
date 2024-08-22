@@ -5,9 +5,9 @@ clusterGroup:
     - open-cluster-management
     - vault
     - golang-external-secrets
-    - istio-system
-    - ingress-gateway
+    - istio-system:
         operatorGroup: false
+    - ingress-gateway
     - kuadrant-system:
         operatorGroup: false
   subscriptions:
