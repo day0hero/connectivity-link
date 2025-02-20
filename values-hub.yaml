@@ -20,6 +20,8 @@ clusterGroup:
     rhsm3:
       name: servicemeshoperator3
       channel: candidates
+    #with HCP (sts enabled) clusters we need to provide an aws arn with attached
+    #policy to the subscription prior to installation.
     #cert-manager:
     #  name:
     #  namespace:
