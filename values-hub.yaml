@@ -5,21 +5,25 @@ clusterGroup:
     - open-cluster-management
     - vault
     - golang-external-secrets
-    - istio-system:
-        operatorGroup: false
-    - ingress-gateway
-    - kuadrant-system:
-        operatorGroup: false
+    - istio-system
+    - istio-cni
+    - kuadrant-system
   subscriptions:
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
-      channel: release-2.10
+      channel: release-2.12
       #csv: advanced-cluster-management.v2.6.1
-    sail:
-      name: sailoperator
-      namespace: istio-system
-      source: community-operators
+    rhcl:
+      name: connectivity-link
+      namespace: kuadrant-system
+    rhsm3:
+      name: servicemeshoperator3
+      channel: candidates
+    #cert-manager:
+    #  name:
+    #  namespace:
+    #  channel:
   projects:
     - hub
     - rh-connectivity-link
